@@ -52,10 +52,29 @@
             </p-floatLabel>
         </div>
         <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="sexo" [(ngModel)]="alumno.sexo" />
-                <label for="sexo">Sexo</label>
-            </p-floatLabel>
+            <p-fieldset legend="Sexo">
+                <div class="flex flex-wrap gap-3">
+                    <div class="flex align-items-center">
+                        <p-radioButton 
+                            [disabled]="isModoVer()"
+                            name="sexo_m" 
+                            value="M" 
+                            [(ngModel)]="alumno.sexo" 
+                            inputId="sexo_m" />
+                        <label for="sexo_m" class="ml-2">Masculino</label>
+                    </div>
+                    
+                    <div class="flex align-items-center">
+                        <p-radioButton 
+                            [disabled]="isModoVer()"
+                            name="sexo_f" 
+                            value="F" 
+                            [(ngModel)]="alumno.sexo" 
+                            inputId="sexo_f" />
+                        <label for="sexo_f" class="ml-2">Femenino</label>
+                    </div>
+                </div>
+            </p-fieldset>
         </div>
     </div>
 

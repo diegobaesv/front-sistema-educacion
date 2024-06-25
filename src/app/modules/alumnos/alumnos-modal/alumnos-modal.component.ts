@@ -8,12 +8,14 @@ import { IAlumno } from '../../../core/models/IAlumno';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TYPE_MODAL_VER } from '../../../shared/utils/constants';
 import { CalendarModule } from 'primeng/calendar';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FieldsetModule } from 'primeng/fieldset';
 
 
 @Component({
   selector: 'app-alumnos-modal',
   standalone: true,
-  imports: [FormsModule,InputTextModule, FloatLabelModule, ButtonModule,CalendarModule],
+  imports: [FormsModule,InputTextModule, FloatLabelModule, ButtonModule,CalendarModule,RadioButtonModule,FieldsetModule],
   templateUrl: './alumnos-modal.component.html',
   styleUrl: './alumnos-modal.component.scss'
 })

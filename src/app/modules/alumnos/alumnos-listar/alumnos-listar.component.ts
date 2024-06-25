@@ -54,13 +54,13 @@ export class AlumnosListarComponent {
     idAlumno:2,
     documentoIdentidad:'72569900',
     codigo: '20202415',
-    nombres: 'Anthony',
+    nombres: 'Maria',
     apellidoPaterno: 'Flores',
     apellidoMaterno: 'Barboza',
-    correoInstitucional: 'anthony@sise.edu.pe',
+    correoInstitucional: 'maria@sise.edu.pe',
     direccion:'Santa Beatriz',
     fechaNacimiento: '19/12/2000',
-    sexo:'M'
+    sexo:'F'
   }];
 
   applyFilterGlobal($event:any, stringVal:string) {
