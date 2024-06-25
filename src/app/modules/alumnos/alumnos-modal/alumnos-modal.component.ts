@@ -7,11 +7,13 @@ import { setTimeout } from 'timers/promises';
 import { IAlumno } from '../../../core/models/IAlumno';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TYPE_MODAL_VER } from '../../../shared/utils/constants';
+import { CalendarModule } from 'primeng/calendar';
+
 
 @Component({
   selector: 'app-alumnos-modal',
   standalone: true,
-  imports: [FormsModule,InputTextModule, FloatLabelModule, ButtonModule],
+  imports: [FormsModule,InputTextModule, FloatLabelModule, ButtonModule,CalendarModule],
   templateUrl: './alumnos-modal.component.html',
   styleUrl: './alumnos-modal.component.scss'
 })
