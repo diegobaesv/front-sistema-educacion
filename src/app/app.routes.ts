@@ -3,6 +3,7 @@ import { MainLayoutComponent } from './shared/layouts/main-layout/main-layout.co
 import { AlumnosListarComponent } from './modules/alumnos/alumnos-listar/alumnos-listar.component';
 import { DocentesListarComponent } from './modules/docentes/docentes-listar/docentes-listar.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AlumnosModalComponent } from './modules/alumnos/alumnos-modal/alumnos-modal.component';
 
 export const routes: Routes = [
     { path:'', pathMatch: 'full', redirectTo:'principal'},
@@ -11,8 +12,7 @@ export const routes: Routes = [
             { path: '', pathMatch:'full', redirectTo:'inicio'},
             { path: 'inicio', component: HomeComponent },
             { path: 'alumnos', component: AlumnosListarComponent },
-            { path: 'docentes', component: DocentesListarComponent }
-        ]
+            { path: 'docentes', component: DocentesListarComponent },        ]
     },
     
 ];

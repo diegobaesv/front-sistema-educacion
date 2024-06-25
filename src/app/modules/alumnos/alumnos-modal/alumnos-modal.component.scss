@@ -1,4 +1,16 @@
-::ng-deep .p-fieldset-legend {
-    padding: 0px;
-    background-color: red;
+::ng-deep .p-fieldset {
+    .p-fieldset-legend {
+        padding: 0.1rem;
+        background-color: white;
+        border: 0;
+        .p-fieldset-legend-text{
+            font-weight: normal;
+            font-size: 12px;
+            color: #6b7280;
+        }
+    }
+    .p-fieldset-content{
+        padding: 0.1rem;
+        
+    }
 }

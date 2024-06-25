@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InputTextModule } from 'primeng/inputtext';
 import { FloatLabelModule } from 'primeng/floatlabel';
-import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormsModule, Validators } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { setTimeout } from 'timers/promises';
 import { IAlumno } from '../../../core/models/IAlumno';
@@ -23,8 +23,47 @@ export class AlumnosModalComponent implements OnInit{
 
   constructor(
     private ref: DynamicDialogRef,
-    private config: DynamicDialogConfig
+    private config: DynamicDialogConfig,
+    private fb: FormBuilder
   ){
+    this.fb.group({
+      codigoEstudiante: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required, Validators.maxLength(10) ]
+      ],
+      correoInstitucional: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required, Validators.email ]
+      ],
+      documentoIdentidad: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required, Validators.maxLength(8), Validators.minLength(8) ]
+      ],
+      nombres: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required ]
+      ],
+      apellidoPaterno: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required ]
+      ],
+      apellidoMaterno: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required ]
+      ],
+      fechaNacimiento: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required, Validators.pattern('(^0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(\d{4}$)') ]
+      ],
+      sexo: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required, Validators.maxLength(1), Validators.minLength(1) ]
+      ],
+      direccion: [
+        { value:'', disabled: this.isModoVer() },
+        [ Validators.required ]
+      ]
+    })
   }
 
 
