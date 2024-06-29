@@ -42,7 +42,7 @@ export class AlumnosModalComponent implements OnInit{
     private fb: FormBuilder
   ){
     this.alumnoForm = this.fb.group({
-      codigoEstudiante: [
+      codigo: [
         { value:'', disabled: this.isModoVer() },
         [ Validators.required, Validators.maxLength(10) ]
       ],
@@ -82,7 +82,7 @@ export class AlumnosModalComponent implements OnInit{
   }
 
 
-  alumno: IAlumno = {
+  /*alumno: IAlumno = {
     idAlumno: 0,
     codigo:'',
     correoInstitucional: '',
@@ -93,12 +93,14 @@ export class AlumnosModalComponent implements OnInit{
     direccion: '',
     fechaNacimiento: '',
     sexo: ''
-  };
+  };*/
 
   ngOnInit(): void {
    console.log('AlumnosModalComponent',this.config.data);
    if(this.config.data.data){
-    this.alumno = this.config.data.data;
+    //this.alumno = this.config.data.data;
+    this.alumnoForm.patchValue(this.config.data.data);
+    //this.alumnoForm.get('codigo')?.setValue('MANUAL')
    }
   }
 

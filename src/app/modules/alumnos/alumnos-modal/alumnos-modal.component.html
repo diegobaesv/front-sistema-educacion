@@ -3,10 +3,10 @@
         <div class="grid">
             <div class="col-12 lg:col-6 mt-4">
                 <p-floatLabel>
-                    <input [disabled]="isModoVer()" class="w-full" pInputText id="codigo" formControlName="codigoEstudiante"/>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="codigo" formControlName="codigo"/>
                     <label for="codigo">Código Estudiante</label>
                 </p-floatLabel>
-                <app-validator-form [control]="this.alumnoForm.get('codigoEstudiante')"></app-validator-form>
+                <app-validator-form [control]="this.alumnoForm.get('codigo')"></app-validator-form>
                 
             </div>  
             <div class="col-12 lg:col-6 mt-4">
