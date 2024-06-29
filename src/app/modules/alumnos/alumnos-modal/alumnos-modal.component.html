@@ -1,91 +1,106 @@
 <div class="pl-5 pr-5">
-    <div class="grid">
-        <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="codigo" [(ngModel)]="alumno.codigo" />
-                <label for="codigo">Código Estudiante</label>
-            </p-floatLabel>
-        </div>  
-        <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="correoInstitucional" [(ngModel)]="alumno.correoInstitucional" />
-                <label for="correoInstitucional">Correo Institucional</label>
-            </p-floatLabel>
+    <form [formGroup]="alumnoForm" (ngSubmit)="onSubmit()">
+        <div class="grid">
+            <div class="col-12 lg:col-6 mt-4">
+                <p-floatLabel>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="codigo" formControlName="codigoEstudiante"/>
+                    <label for="codigo">Código Estudiante</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('codigoEstudiante')"></app-validator-form>
+                
+            </div>  
+            <div class="col-12 lg:col-6 mt-4">
+                <p-floatLabel>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="correoInstitucional" formControlName="correoInstitucional" />
+                    <label for="correoInstitucional">Correo Institucional</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('correoInstitucional')"></app-validator-form>
+            </div>
         </div>
-    </div>
+        
+        <div class="grid">
+            <div class="col-12 lg:col-6 mt-4">
+                <p-floatLabel>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="documentoIdentidad" formControlName="documentoIdentidad" />
+                    <label for="documentoIdentidad">Documento Identidad</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('documentoIdentidad')"></app-validator-form>
+
+            </div>
+            <div class="col-12 lg:col-6 mt-4">
+                <p-floatLabel>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="nombres" formControlName="nombres" />
+                    <label for="nombres">Nombres</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('nombres')"></app-validator-form>
+            </div>
+        </div>
     
-    <div class="grid">
-        <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="documentoIdentidad" [(ngModel)]="alumno.documentoIdentidad" />
-                <label for="documentoIdentidad">Documento Identidad</label>
-            </p-floatLabel>
+        <div class="grid">
+            <div class="col-12 lg:col-6 mt-4">
+                <p-floatLabel>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="apellidoPaterno" formControlName="apellidoPaterno" />
+                    <label for="apellidoPaterno">Apellido Paterno</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('apellidoPaterno')"></app-validator-form>
+            </div>
+            <div class="col-12 lg:col-6 mt-4">
+                <p-floatLabel>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="apellidoMaterno" formControlName="apellidoMaterno" />
+                    <label for="apellidoMaterno">Apellido Materno</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('apellidoMaterno')"></app-validator-form>
+            </div>
         </div>
-        <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="nombres" [(ngModel)]="alumno.nombres" />
-                <label for="nombres">Nombres</label>
-            </p-floatLabel>
-        </div>
-    </div>
-
-    <div class="grid">
-        <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="apellidoPaterno" [(ngModel)]="alumno.apellidoPaterno" />
-                <label for="apellidoPaterno">Apellido Paterno</label>
-            </p-floatLabel>
-        </div>
-        <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="apellidoMaterno" [(ngModel)]="alumno.apellidoMaterno" />
-                <label for="apellidoMaterno">Apellido Materno</label>
-            </p-floatLabel>
-        </div>
-    </div>
-
-    <div class="grid">
-        <div class="col-12 lg:col-6 mt-4">
-            <p-floatLabel>
-                <p-calendar  dateFormat="dd/mm/yy" [disabled]="isModoVer()" [showButtonBar]="true" [touchUI]="true"  [style]="{'width':'100%'}" [(ngModel)]="alumno.fechaNacimiento" inputId="fechaNacimiento"  [iconDisplay]="'input'" [showIcon]="true"  />
-                <label  for="fechaNacimiento">Fecha Nacimiento</label>
-            </p-floatLabel>
-        </div>
-        <div class="col-12 lg:col-6 mt-4">
-            <p-fieldset legend="Sexo">
-                <div class="flex flex-wrap gap-3">
-                    <div class="flex align-items-center">
-                        <p-radioButton 
-                            [disabled]="isModoVer()"
-                            name="sexo_m" 
-                            value="M" 
-                            [(ngModel)]="alumno.sexo" 
-                            inputId="sexo_m" />
-                        <label for="sexo_m" class="ml-2">Masculino</label>
+    
+        <div class="grid">
+            <div class="col-12 lg:col-6 mt-4">
+                <p-floatLabel>
+                    <p-calendar  dateFormat="dd/mm/yy" [disabled]="isModoVer()" [showButtonBar]="true" [touchUI]="true"  [style]="{'width':'100%'}" formControlName="fechaNacimiento" inputId="fechaNacimiento"  [iconDisplay]="'input'" [showIcon]="true"  />
+                    <label  for="fechaNacimiento">Fecha Nacimiento</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('fechaNacimiento')"></app-validator-form>
+            </div>
+            <div class="col-12 lg:col-6 mt-4">
+                <p-fieldset legend="Sexo">
+                    <div class="flex flex-wrap gap-3">
+                        <div class="flex align-items-center">
+                            <p-radioButton 
+                                [disabled]="isModoVer()"
+                                name="sexo" 
+                                value="M" 
+                                formControlName="sexo" 
+                                inputId="sexo_m" />
+                            <label for="sexo_m" class="ml-2">Masculino</label>
+                        </div>
+                        
+                        <div class="flex align-items-center">
+                            <p-radioButton 
+                                [disabled]="isModoVer()"
+                                name="sexo" 
+                                value="F" 
+                                formControlName="sexo" 
+                                inputId="sexo_f" />
+                            <label for="sexo_f" class="ml-2">Femenino</label>
+                        </div>
                     </div>
-                    
-                    <div class="flex align-items-center">
-                        <p-radioButton 
-                            [disabled]="isModoVer()"
-                            name="sexo_f" 
-                            value="F" 
-                            [(ngModel)]="alumno.sexo" 
-                            inputId="sexo_f" />
-                        <label for="sexo_f" class="ml-2">Femenino</label>
-                    </div>
-                </div>
-            </p-fieldset>
+                </p-fieldset>
+                <app-validator-form [control]="this.alumnoForm.get('sexo')"></app-validator-form>
+            </div>
         </div>
-    </div>
+        <div class="grid">
+            <div class="col-12 lg:col-12 mt-4">
+                <p-floatLabel>
+                    <input [disabled]="isModoVer()" class="w-full" pInputText id="direccion" formControlName="direccion" />
+                    <label for="direccion">Dirección</label>
+                </p-floatLabel>
+                <app-validator-form [control]="this.alumnoForm.get('direccion')"></app-validator-form>
+            </div>
+        </div>
+        <p>Formulario valido: {{alumnoForm.valid}}</p>
+        <button pButton type="submit" label="Guardar Temp" class="mt-4"></button>
 
-    <div class="grid">
-        <div class="col-12 lg:col-12 mt-4">
-            <p-floatLabel>
-                <input [disabled]="isModoVer()" class="w-full" pInputText id="direccion" [(ngModel)]="alumno.direccion" />
-                <label for="direccion">Dirección</label>
-            </p-floatLabel>
-        </div>
-    </div>
+    </form>
 </div>
 
 

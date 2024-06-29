@@ -1,32 +1,47 @@
 import { Component, OnInit } from '@angular/core';
-import { InputTextModule } from 'primeng/inputtext';
-import { FloatLabelModule } from 'primeng/floatlabel';
-import { FormBuilder, FormsModule, Validators } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { setTimeout } from 'timers/promises';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { IAlumno } from '../../../core/models/IAlumno';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TYPE_MODAL_VER } from '../../../shared/utils/constants';
+
 import { CalendarModule } from 'primeng/calendar';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { FieldsetModule } from 'primeng/fieldset';
-
+import { ButtonModule } from 'primeng/button';
+import { InputTextModule } from 'primeng/inputtext';
+import { FloatLabelModule } from 'primeng/floatlabel';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { CommonModule } from '@angular/common';
+import { ValidatorFormComponent } from '../../../shared/components/validator-form/validator-form.component';
 
 @Component({
   selector: 'app-alumnos-modal',
   standalone: true,
-  imports: [FormsModule,InputTextModule, FloatLabelModule, ButtonModule,CalendarModule,RadioButtonModule,FieldsetModule],
+  imports: [
+    FormsModule, 
+    ReactiveFormsModule, 
+    CommonModule,
+    ValidatorFormComponent,
+
+    InputTextModule, 
+    FloatLabelModule,
+    ButtonModule,
+    CalendarModule,
+    RadioButtonModule,
+    FieldsetModule
+  ],
   templateUrl: './alumnos-modal.component.html',
   styleUrl: './alumnos-modal.component.scss'
 })
 export class AlumnosModalComponent implements OnInit{
+
+  alumnoForm: FormGroup;
 
   constructor(
     private ref: DynamicDialogRef,
     private config: DynamicDialogConfig,
     private fb: FormBuilder
   ){
-    this.fb.group({
+    this.alumnoForm = this.fb.group({
       codigoEstudiante: [
         { value:'', disabled: this.isModoVer() },
         [ Validators.required, Validators.maxLength(10) ]
@@ -53,7 +68,7 @@ export class AlumnosModalComponent implements OnInit{
       ],
       fechaNacimiento: [
         { value:'', disabled: this.isModoVer() },
-        [ Validators.required, Validators.pattern('(^0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(\d{4}$)') ]
+        [ Validators.required/*, Validators.pattern('(^0[1-9]|[12][0-9]|3[01])\/(0[1-9]|1[0-2])\/(\d{4}$)')*/ ]
       ],
       sexo: [
         { value:'', disabled: this.isModoVer() },
@@ -63,7 +78,7 @@ export class AlumnosModalComponent implements OnInit{
         { value:'', disabled: this.isModoVer() },
         [ Validators.required ]
       ]
-    })
+    });
   }
 
 
@@ -89,6 +104,24 @@ export class AlumnosModalComponent implements OnInit{
 
   isModoVer():boolean{
     return this.config.data.typeModal == TYPE_MODAL_VER
+  }
+
+  onSubmit(){
+    console.log('onSubmit');
+
+    //console.log('this.alumnoForm.errors',this.alumnoForm.get('codigoEstudiante')?.errors)
+
+    this.alumnoForm.markAllAsTouched();
+
+
+    if(!this.alumnoForm.valid){
+      console.error('El formulario tiene errores');
+      return;
+    }
+
+    
+
+    console.log('El formulario esta OK');
   }
 
 
