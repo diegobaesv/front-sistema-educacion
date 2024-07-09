@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Table, TableModule } from 'primeng/table';
 import { IAlumno } from '../../../core/models/IAlumno';
 import { ButtonModule } from 'primeng/button';
@@ -10,6 +10,7 @@ import { AlumnosModalComponent } from '../alumnos-modal/alumnos-modal.component'
 import { FooterModalComponent } from '../../../shared/components/footer-modal/footer-modal.component';
 import { TYPE_MODAL_CREAR, TYPE_MODAL_EDITAR, TYPE_MODAL_VER } from '../../../shared/utils/constants';
 import { HomeComponent } from '../../../pages/home/home.component';
+import { AlumnosService } from '../../../core/services/alumnos.service';
 
 
 @Component({
@@ -20,13 +21,15 @@ import { HomeComponent } from '../../../pages/home/home.component';
   styleUrl: './alumnos-listar.component.scss',
   providers: [DialogService]
 })
-export class AlumnosListarComponent {
+export class AlumnosListarComponent implements OnInit {
 
   constructor(
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private alumnosService: AlumnosService
   ){
 
   }
+  
 
   @ViewChild('tblAlumnosListar') tblAlumnosListar: Table | undefined;
 
@@ -38,30 +41,13 @@ export class AlumnosListarComponent {
     'margin-left': '0.5rem'
   }
 
+  alumnos: any = [];
 
-  alumnos: IAlumno[] = [{
-    idAlumno:1,
-    documentoIdentidad:'72567788',
-    codigo: '20202415',
-    nombres: 'Nicolas',
-    apellidoPaterno: 'Coras',
-    apellidoMaterno: 'Felix',
-    correoInstitucional: 'nicolas@sise.edu.pe',
-    direccion:'Santa Beatriz',
-    fechaNacimiento: '19/12/2000',
-    sexo:'M'
-  },{
-    idAlumno:2,
-    documentoIdentidad:'72569900',
-    codigo: '20202415',
-    nombres: 'Maria',
-    apellidoPaterno: 'Flores',
-    apellidoMaterno: 'Barboza',
-    correoInstitucional: 'maria@sise.edu.pe',
-    direccion:'Santa Beatriz',
-    fechaNacimiento: '19/12/2000',
-    sexo:'F'
-  }];
+  async ngOnInit() {
+    const response:any = await this.alumnosService.listarAlumnos();
+    console.log('response',response);
+    this.alumnos = response.data;
+  }
 
   applyFilterGlobal($event:any, stringVal:string) {
     this.tblAlumnosListar?.filterGlobal(($event.target as HTMLInputElement).value, stringVal);
