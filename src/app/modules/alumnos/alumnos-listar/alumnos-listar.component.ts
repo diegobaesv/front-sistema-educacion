@@ -11,6 +11,7 @@ import { FooterModalComponent } from '../../../shared/components/footer-modal/fo
 import { TYPE_MODAL_CREAR, TYPE_MODAL_EDITAR, TYPE_MODAL_VER } from '../../../shared/utils/constants';
 import { HomeComponent } from '../../../pages/home/home.component';
 import { AlumnosService } from '../../../core/services/alumnos.service';
+import { SweetService } from '../../../core/services/sweet.service';
 
 
 @Component({
@@ -25,7 +26,8 @@ export class AlumnosListarComponent implements OnInit {
 
   constructor(
     private dialogService: DialogService,
-    private alumnosService: AlumnosService
+    private alumnosService: AlumnosService,
+    private sweetService: SweetService
   ){
 
   }
@@ -44,6 +46,10 @@ export class AlumnosListarComponent implements OnInit {
   alumnos: any = [];
 
   async ngOnInit() {
+    await this.loadAlumnos();
+  }
+
+  async loadAlumnos(){
     const response:any = await this.alumnosService.listarAlumnos();
     console.log('response',response);
     this.alumnos = response.data;
@@ -72,6 +78,7 @@ export class AlumnosListarComponent implements OnInit {
 
     this.ref.onClose.subscribe((data:any)=>{
       console.log('SE HA CERRADO EL MODAL:',data);
+      this.loadAlumnos();
     })
   }
 
@@ -116,8 +123,26 @@ export class AlumnosListarComponent implements OnInit {
 
     this.ref.onClose.subscribe((data:any)=>{
       console.log('SE HA CERRADO EL MODAL:',data);
+      this.loadAlumnos();
     })
 
+  }
+
+  onClickEliminarAlumno(idAlumno: number){
+    this.sweetService.showConfirm('¿Deseas eliminar al alumno?',async ()=>{
+      try {
+        const response: any = await this.alumnosService.eliminarAlumno(idAlumno);
+        console.log(response);
+        if (response.success) {
+          this.sweetService.showSuccess();
+          this.loadAlumnos();
+        } else {
+          this.sweetService.showError(response.message);
+        }
+      } catch (error:any) {
+        this.sweetService.showError(error.message);
+      }
+    })
   }
 
   

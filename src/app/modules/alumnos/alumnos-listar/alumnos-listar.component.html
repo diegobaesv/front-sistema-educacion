@@ -41,7 +41,7 @@
             <td>
                 <p-button (onClick)="onClickVerAlumno(alumno)" [style]="buttonStyle" icon="pi pi-eye" size="small" [rounded]="true" severity="info" />
                 <p-button (onClick)="onClickEditarAlumno(alumno)" [style]="buttonStyle" icon="pi pi-pencil" size="small" [rounded]="true" severity="warning" />
-                <p-button [style]="buttonStyle" icon="pi pi-trash" size="small" [rounded]="true" severity="danger" />
+                <p-button (onClick)="onClickEliminarAlumno(alumno.idAlumno)" [style]="buttonStyle" icon="pi pi-trash" size="small" [rounded]="true" severity="danger" />
             </td>
         </tr>
     </ng-template>

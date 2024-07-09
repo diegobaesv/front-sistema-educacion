@@ -97,8 +97,8 @@
                 <app-validator-form [control]="this.alumnoForm.get('direccion')"></app-validator-form>
             </div>
         </div>
-        <p>Formulario valido: {{alumnoForm.valid}}</p>
-        <button pButton type="submit" label="Guardar Temp" class="mt-4"></button>
+        <!-- <p>Formulario valido: {{alumnoForm.valid}}</p> -->
+        <button *ngIf="!isModoVer()" pButton type="submit" label="Guardar" class="mt-4"></button>
 
     </form>
 </div>
